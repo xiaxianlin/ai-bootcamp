@@ -154,6 +154,7 @@ class MultiServerMCPClient:
 
     async def create_function_response_messages(self, messages, response):
         function_call_messages = response.choices[0].message.tool_calls
+        print(function_call_messages)
         messages.append(response.choices[0].message.model_dump())
 
         for function_call_message in function_call_messages:
@@ -237,7 +238,6 @@ class MultiServerMCPClient:
 
         # 执行 MCP 工具
         resp = await session.call_tool(tool_name, tool_args)
-        print(resp)
         return resp.content if resp.content else "工具执行无输出"
 
     async def chat_loop(self):
