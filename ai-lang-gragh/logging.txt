@@ -1,0 +1,14 @@
+Your Conversation Log:
+You: hi i'm bob
+AI: Hello Bob! How can I assist you today?
+
+You: good morning
+AI: Good morning! How's your day going so far?
+
+You: what is my name
+AI: You mentioned earlier that your name is Bob. How can I help you today?
+
+You: \bye
+AI: Goodbye! If you have any more questions in the future, feel free to reach out. Have a great day!
+
+End of Conversation
