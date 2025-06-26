@@ -10,7 +10,7 @@ def test_function_calling():
     base_url = str(os.getenv("DEEPSEEK_BASE_URL"))
     model_name = "deepseek-chat"  # 模型名称
 
-    user_message = "北京的天气怎么样？"  # 输入
+    user_message = "你好，请介绍一下你自己"  # 输入
     chatbot = ChatBot(model_name, base_url, api_key)
     chatbot.chat(user_message)
 

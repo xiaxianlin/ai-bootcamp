@@ -48,7 +48,7 @@ class ChatBot:
             {"role": "user", "content": user_message},
         ]
 
-        print("用户输入\t:", user_message)
+        print("用户输入:\t", user_message)
 
         response = self.client.chat.completions.create(
             model=self.model,
@@ -60,15 +60,17 @@ class ChatBot:
 
         if finish_reason == "stop":
             # 普通问答处理
-            print("模型输出\t:", response.choices[0].message.content)
+            print("模型输出:\t", response.choices[0].message.content)
 
         elif finish_reason == "tool_calls":
             assistant_message = response.choices[0].message
-            print("参数解析\t:", response.choices[0].message.tool_calls[0].function.arguments)
+            tool_calls = assistant_message.tool_calls
+
+            print("函数名称:\t", tool_calls[0].function.name)
+            print("参数解析:\t", tool_calls[0].function.arguments)
 
             messages.append(assistant_message)
 
-            tool_calls = assistant_message.tool_calls
             if tool_calls:
                 function_name = tool_calls[0].function.name
                 function_args = json.loads(tool_calls[0].function.arguments)
@@ -77,7 +79,7 @@ class ChatBot:
 
                 if function_name in available_functions:
                     function_response = available_functions[function_name](**function_args)
-                    print(f"执行结果\t: {function_response}")
+                    print(f"执行结果:\t{function_response}")
                     # 添加工具调用的响应到消息中
                     messages.append(
                         {
@@ -92,7 +94,7 @@ class ChatBot:
                         messages=messages,
                     )
 
-                    print("最终回复\t:", final_response.choices[0].message.content)
+                    print("最终回复:\t", final_response.choices[0].message.content)
                 else:
                     print(f"Function {function_name} is not available.")
             else:
