@@ -18,7 +18,7 @@ def test_function_calling():
 
 def test_web_search():
     bot = SearchBot("deepseek-chat", base_url, api_key, serpapi_key)
-    bot.chat("今天的世界主要股指是多少")
+    bot.chat("今天杭州的天气如何")
 
 
 if __name__ == "__main__":
