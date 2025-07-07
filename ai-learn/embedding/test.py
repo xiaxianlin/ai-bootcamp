@@ -113,7 +113,7 @@ def learn02():
     preds = clf.predict(X_test)
     # probas = clf.predict_proba(X_test)
 
-    report = classification_report(y_test, preds, zero_division=)
+    report = classification_report(y_test, preds, zero_division=1)
     print(report)
 
 
